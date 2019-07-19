@@ -184,7 +184,7 @@ Mit **Test Connection** können die Verbindungsdaten verifiziert werden und ansc
 
 Über den Menupunkt **REST Lab** oder mittels Kommandos wie **curl** bzw. **wget** oder anderen Mitteln kann dann das API genutzt werden.
 
-![REST Lab] (Rest_Lab.png)
+![REST Lab] (Layer7APICreator/Rest_Lab.png)
 
 
 
