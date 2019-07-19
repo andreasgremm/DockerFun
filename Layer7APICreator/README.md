@@ -2,19 +2,19 @@
 
 
 ## Use Case: Layer7 Live API Creator
-[Layer7 Live API Creator] (https://www.ca.com/de/products/ca-live-api-creator.html)  ist eine Lösung von CA Technolgies für die "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
+[Layer7 Live API Creator]]((https://www.ca.com/de/products/ca-live-api-creator.html)  ist eine Lösung von CA Technolgies für die "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
 
 Für unseren Use-Case wollen wir Docker verwenden, um eine reproduzierbare Umgebung zu erzeugen und diese Basis auch für andere Anwendungsfälle nutzen zu können.
 Für die Realisierung benötigen wir drei Docker-Images.
 
-* [MySql Datenbank] (https://hub.docker.com/_/mysql) als Datenquelle für die Erzeugung eines oder mehrerer APIs
-* [PhpMyAdmin] (https://hub.docker.com/r/phpmyadmin/phpmyadmin/) für die angenehmere Verwaltung der MySql-Datenbank
-* [Layer7 Live API Creator] (https://hub.docker.com/r/caliveapicreator/5.2.00)
+* [MySql Datenbank](https://hub.docker.com/_/mysql) als Datenquelle für die Erzeugung eines oder mehrerer APIs
+* [PhpMyAdmin](https://hub.docker.com/r/phpmyadmin/phpmyadmin/) für die angenehmere Verwaltung der MySql-Datenbank
+* [Layer7 Live API Creator](https://hub.docker.com/r/caliveapicreator/5.2.00)
 
 ### Allgemeine Vorbereitungen 
 Um diesen Use Case durchzuführen, benötigen wir natürlich eine Installation von Docker.
-Hierzu wird die Variante [**Docker CE**] (https://docs.docker.com/install/) für das zur Verfügung stehende Betriebssystem installiert. 
-Sollte die Installation auf der zur Verfügung stehenden Maschine so nicht möglich sein, gibt es natürlich auch immer die Möglichkeit in einer Virtualisierungsumgebung z.B: VMWare Workstation oder [VirtualBox] (https://www.virtualbox.org/) zu arbeiten.
+Hierzu wird die Variante [**Docker CE**](https://docs.docker.com/install/) für das zur Verfügung stehende Betriebssystem installiert. 
+Sollte die Installation auf der zur Verfügung stehenden Maschine so nicht möglich sein, gibt es natürlich auch immer die Möglichkeit in einer Virtualisierungsumgebung z.B: VMWare Workstation oder [VirtualBox](https://www.virtualbox.org/) zu arbeiten.
 
 ### Herunterladen der benötigten Docker Images
 In den oben angegebenen Beschreibungen für unsere drei Docker-Images sind jeweils die notwendigen Befehle angegeben, um diese Images aus dem Docker-Repository in unsere lokale Docker-Umgebung herunterzuladen. Also führen wir die drei, zur Zeit der Erstellung dieses Dokumentes gültigen, folgenden Befehle aus:
@@ -49,7 +49,7 @@ Ein Docker-Volume wird dann beim Start über den Parameter **--mount 'src=\<Volu
 Nachdem das Volume verfügbar ist, kann die Datenbank gestartet werden. Dieses wird über den Befehl **docker run ....** erledigt.
 Damit wird das zu benennende Image zu einem laufenden Container. Das Image bleibt in seiner Gesamtheit unberührt so stehen. Alle zur Laufzeit des Containers stattfindenden Veränderungen finden in dem Container bzw. den gemounteten Dateisystemen/Volumes statt.
 
-Wir starten die Datenbank mit folgendem [**docker run**] (https://docs.docker.com/v17.09/edge/engine/reference/run/) Befehl:
+Wir starten die Datenbank mit folgendem [**docker run**](https://docs.docker.com/v17.09/edge/engine/reference/run/) Befehl:
 
 ```
 $ docker run --name my-mysql -e MYSQL_ROOT_PASSWORD=mysqlfun -d \
@@ -83,7 +83,7 @@ Aus diesem Grunde muss für den Benutzer Root zur Nutzung mit PhpMyAdmin der Def
 (Anmerkung: Eine Alternative wäre das Anlegen eines neuen Benutzers mit allen Rechten und dem richtigen Authentifizierungsmechanismus.)
 Wir verändern jetzt Dateien im laufenden my-mysql Container und lernen dabei ein wenig.
 
-Um interaktiven Zugriff auf den laufenden Container zu erhalten, führen wir folgenden Befehl aus und starten damit eine interaktive Shell. Details zu [**docker exec**] (https://docs.docker.com/v17.09/edge/engine/reference/commandline/exec/)
+Um interaktiven Zugriff auf den laufenden Container zu erhalten, führen wir folgenden Befehl aus und starten damit eine interaktive Shell. Details zu [**docker exec**](https://docs.docker.com/v17.09/edge/engine/reference/commandline/exec/)
 
 ```
 $ docker exec -it my-mysql bash
@@ -129,7 +129,7 @@ Erklärungen der Parameter:
 |phpmyadmin/phpmyadmin|Name des zu startenden Docker-Image| |
 
 #### Erstellen einer persönlichen Datenbank
-Um eine persönliche Datenbank zu erstellen, rufen wir [PhpMyAdmin] (http://localhost:8081) auf.
+Um eine persönliche Datenbank zu erstellen, rufen wir [PhpMyAdmin](http://localhost:8081) auf.
 Wir loggen uns mit dem Benutzer **root** und dem gewählten Passwort **mysqlfun** an.
 
 Im PhpMyAdmin legen wir dann einen neuen Benutzer an, vergeben ein Passwort, erstellen eine Datenbank mit dem gleichen Namen und geben dem Benutzer auf diese Datenbank alle Rechte (aber **keine** globalen Rechte!).
@@ -158,7 +158,7 @@ $ docker inspect liveapicreator
 Die für **docker run** genutzten Paramter sind jetzt bekannt bzw. können weiter oben noch einmal nachgelesen werden.
 
 ### Nutzen des Layer7 Live API Creators
-Wir rufen den [Live API Creator] (http://localhost:8080/APICreator/#/) auf und loggen uns mit dem Benutzer **admin** und dem Passwort **Password1** ein.
+Wir rufen den [Live API Creator](http://localhost:8080/APICreator/#/) auf und loggen uns mit dem Benutzer **admin** und dem Passwort **Password1** ein.
 
 Wir erzeugen ein neues API ..
 
