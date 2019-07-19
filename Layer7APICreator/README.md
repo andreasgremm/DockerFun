@@ -1,8 +1,7 @@
-# DockerFun
-Have some documentation about docker and services
+# Layer7 Live API Creator
 
 
-## Use Case: Layer7 Live Api Creator
+## Use Case: Layer7 Live API Creator
 [Layer7 Live API Creator] (https://www.ca.com/de/products/ca-live-api-creator.html)  ist eine Lösung von CA Technolgies für die "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
 
 Für unseren Use-Case wollen wir Docker verwenden, um eine reproduzierbare Umgebung zu erzeugen und diese Basis auch für andere Anwendungsfälle nutzen zu können.
@@ -135,7 +134,11 @@ Wir loggen uns mit dem Benutzer **root** und dem gewählten Passwort **mysqlfun*
 
 Im PhpMyAdmin legen wir dann einen neuen Benutzer an, vergeben ein Passwort, erstellen eine Datenbank mit dem gleichen Namen und geben dem Benutzer auf diese Datenbank alle Rechte (aber **keine** globalen Rechte!).
 
+![Benutzerkonto hinzufügen] (phpmyadmin_benutzer.png)
+
 Anschliessend erzeugen wir in der frisch erstellten Datenbank eine neue Tabelle mit den von uns gewünschten Spalten.
+
+![Datenbankspalten hinzufügen] (phpmyadmin_spalten.png)
 
 Dieses ist mit wenigen Aktionen in der Oberfläche von PhpMyAdmin erledigt. 
 
@@ -157,15 +160,28 @@ Die für **docker run** genutzten Paramter sind jetzt bekannt bzw. können weite
 ### Nutzen des Layer7 Live API Creators
 Wir rufen den [Live API Creator] (http://localhost:8080/APICreator/#/) auf und loggen uns mit dem Benutzer **admin** und dem Passwort **Password1** ein.
 
-Wir erzeugen ein neues API aus einer Datenbank und geben die notwendigen Verbindungsparameter ein:
+Wir erzeugen ein neues API ..
+![Neues API hinzufügen] (Create_new_API.png)
+
+aus einer Datenbank ..
+![Database first] (Databse_First.png)
+
+dann wählen wir den Datenbanktyp ..
+![Database Type] (Select_DB_Type.png)
+
+ und geben die notwendigen Verbindungsparameter ein:
 * Host: my-mysql
 * Port: 3306
 * Username: wie in PhpMyAdmin angegeben
 * Passwort: wie in PhpMyAdmin angegeben 
 
+![API Verbindung] (API_Connection.png)
+
 Mit **Test Connection** können die Verbindungsdaten verifiziert werden und anschliessen wird das API mit **Continue** erstellt.
 
 Über den Menupunkt **REST Lab** oder mittels Kommandos wie **curl** bzw. **wget** oder anderen Mitteln kann dann das API genutzt werden.
+
+![REST Lab] (Rest_Lab.png)
 
 
 
