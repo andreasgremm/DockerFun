@@ -16,30 +16,29 @@ Hierzu wird die Variante [**Docker CE**](https://docs.docker.com/install/) für 
 Sollte die Installation auf der zur Verfügung stehenden Maschine so nicht möglich sein, gibt es natürlich auch immer die Möglichkeit in einer Virtualisierungsumgebung z.B: VMWare Workstation oder [VirtualBox](https://www.virtualbox.org/) zu arbeiten.
 
 ### Herunterladen der benötigten Docker Images
-In den oben angegebenen Beschreibungen für unsere drei Docker-Images sind jeweils die notwendigen Befehle angegeben, um diese Images aus dem Docker-Repository in unsere lokale Docker-Umgebung herunterzuladen. Also führen wir die drei, zur Zeit der Erstellung dieses Dokumentes gültigen, folgenden Befehle aus:
-(Anmerkung: das Dollar-Zeichen steht nur als Synonym für die Eingabeaufforderung an erster Stelle. Dieses wird **NICHT** mit eingegeben!)
+In den oben angegebenen Beschreibungen für unsere drei Docker-Images sind jewedoils die notwendigen Befehle angegeben, um diese Images aus dem Docker-Repository in unsere lokale Docker-Umgebung herunterzuladen. Also führen wir die drei, zur Zeit der Erstellung dieses Dokumentes gültigen, folgenden Befehle aus:
 
 ```
-$ docker pull mysql
-$ docker pull phpmyadmin/phpmyadmin
-$ docker pull caliveapicreator/5.2.00
+docker pull mysql
+docker pull phpmyadmin/phpmyadmin
+docker pull caliveapicreator/5.2.00
 ```
 Mit dem Befehl ```docker image ls``` werden die vorhandenen Images angezeigt. Details von Docker Komponenten werden mit **docker inspect ....** angezeigt.
 Beispiel zum Ausprobieren:
 
 ```
-$ docker inspect mysql
+docker inspect mysql
 ```
 
 ### Vorbereitungen für die Datenbank
 Um die Datenbank persistent vorzuhalten, nutze ich in diesem Beispiel ein Docker Volume, welches dann an die richtige Stelle im MySql Docker-Image eingebunden wird.
 
 ```
-$ docker volume create mysqldb
-$ docker volume ls
+docker volume create mysqldb
+docker volume ls
 	DRIVER              VOLUME NAME
 	local               mysqldb
-$ docker inspect mysqldb
+docker inspect mysqldb
 ```
 Ein Docker-Volume wird dann beim Start über den Parameter **--mount 'src=\<Volume-Name\>,dst=\<Container-Path\>'** eingebunden.
 
@@ -51,7 +50,7 @@ Damit wird das zu benennende Image zu einem laufenden Container. Das Image bleib
 Wir starten die Datenbank mit folgendem [**docker run**](https://docs.docker.com/v17.09/edge/engine/reference/run/) Befehl:
 
 ```
-$ docker run --name my-mysql -e MYSQL_ROOT_PASSWORD=mysqlfun -d \
+docker run --name my-mysql -e MYSQL_ROOT_PASSWORD=mysqlfun -d \
   --mount 'src=mysqldb,dst=/var/lib/mysql' \
   mysql:latest
   
@@ -69,8 +68,8 @@ Erklärungen der Parameter:
 Mit den Befehlen:
 
 ```
-$ docker ps
-$ docker inspect my-mysql
+docker ps
+docker inspect my-mysql
 ``` 
 
 sehen wir Informationen zu dem laufenden Container.
@@ -85,7 +84,7 @@ Wir verändern jetzt Dateien im laufenden my-mysql Container und lernen dabei ei
 Um interaktiven Zugriff auf den laufenden Container zu erhalten, führen wir folgenden Befehl aus und starten damit eine interaktive Shell. Details zu [**docker exec**](https://docs.docker.com/v17.09/edge/engine/reference/commandline/exec/)
 
 ```
-$ docker exec -it my-mysql bash
+docker exec -it my-mysql bash
 ```
 Im Verzeichnis /etc/mysql findet sich die Datei my.cnf, welche es zu verändern gilt.
 Wir wechseln in das Verzeichnis /etc/mysql, anschliessend schreiben wir eine weitere Zeile in die Datei my.cnf und verändern die Authentifizierung für den Benutzer root. Zum Schluss verlassen wir die interaktive Session.
@@ -100,21 +99,21 @@ Um diese Änderung zu aktivieren muss der laufende Datenbank-Container einmal ge
 (Anmerkung: in den untenstehenden Zeilen ist alles, was hinter dem # steht ein reiner Kommentar. Dieses muss nicht mit angegeben werden.)
 
 ```
-$ docker stop my-mysql
-$ docker ps # Beobachtung?
-$ docker ps -a  # Beobachtung? => Richtig, gestoppte Container sieht man nur mit dem Parameter -a
-$ docker start my-mysql
-$ docker ps # Beobachtung?
+docker stop my-mysql
+docker ps # Beobachtung?
+docker ps -a  # Beobachtung? => Richtig, gestoppte Container sieht man nur mit dem Parameter -a
+docker start my-mysql
+docker ps # Beobachtung?
 ```
 
 ### Start von PhpMyAdmin
 Wie beim Start der Datenbank nutzen wir wieder **docker run** um das Image zu phpmyadmin als Container zu starten:
 
 ```
-$ docker image ls
-$ docker run --name myadmin -d --link my-mysql:db -p 8081:80 phpmyadmin/phpmyadmin
-$ docker ps
-$ docker inspect myadmin
+docker image ls
+docker run --name myadmin -d --link my-mysql:db -p 8081:80 phpmyadmin/phpmyadmin
+docker ps
+docker inspect myadmin
 ```
 
 Erklärungen der Parameter:
@@ -149,9 +148,9 @@ Zum Schluss starten wir noch den Live Api Creator, um aus unserer selbst erstell
 Mit diesem API werden wir dann Daten abrufen, ergänzen, ändern und löschen.
 
 ```
-$ docker run -p 8080:8080 -d --link=my-mysql:db --name liveapicreator caliveapicreator/5.2.00
-$ docker ps
-$ docker inspect liveapicreator
+docker run -p 8080:8080 -d --link=my-mysql:db --name liveapicreator caliveapicreator/5.2.00
+docker ps
+docker inspect liveapicreator
 ```
 
 Die für **docker run** genutzten Paramter sind jetzt bekannt bzw. können weiter oben noch einmal nachgelesen werden.
