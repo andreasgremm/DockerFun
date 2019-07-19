@@ -161,12 +161,15 @@ Die für **docker run** genutzten Paramter sind jetzt bekannt bzw. können weite
 Wir rufen den [Live API Creator] (http://localhost:8080/APICreator/#/) auf und loggen uns mit dem Benutzer **admin** und dem Passwort **Password1** ein.
 
 Wir erzeugen ein neues API ..
+
 ![Neues API hinzufügen] (Create_new_API.png)
 
 aus einer Datenbank ..
+
 ![Database first] (Databse_First.png)
 
 dann wählen wir den Datenbanktyp ..
+
 ![Database Type] (Select_DB_Type.png)
 
  und geben die notwendigen Verbindungsparameter ein:
