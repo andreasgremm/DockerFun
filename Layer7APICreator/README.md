@@ -2,7 +2,7 @@
 
 
 ## Use Case: Layer7 Live API Creator
-[Layer7 Live API Creator]]((https://www.ca.com/de/products/ca-live-api-creator.html)  ist eine Lösung von CA Technolgies für die "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
+[Layer7 Live API Creator](https://www.ca.com/de/products/ca-live-api-creator.html)  ist eine Lösung von CA Technolgies für die "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
 
 Für unseren Use-Case wollen wir Docker verwenden, um eine reproduzierbare Umgebung zu erzeugen und diese Basis auch für andere Anwendungsfälle nutzen zu können.
 Für die Realisierung benötigen wir drei Docker-Images.
