@@ -90,10 +90,10 @@ Im Verzeichnis /etc/mysql findet sich die Datei my.cnf, welche es zu verändern 
 Wir wechseln in das Verzeichnis /etc/mysql, anschliessend schreiben wir eine weitere Zeile in die Datei my.cnf und verändern die Authentifizierung für den Benutzer root. Zum Schluss verlassen wir die interaktive Session.
 
 ```
-/# cd /etc/mysql
-/etc/mysql# echo "default_authentication_plugin=mysql_native_password" >>my.cnf
-/etc/mysql#  mysql -u root -pmysqlfun -e "ALTER USER root IDENTIFIED WITH mysql_native_password BY 'mysqlfun';"
-/etc/mysql# exit
+cd /etc/mysql
+echo "default_authentication_plugin=mysql_native_password" >>my.cnf
+mysql -u root -pmysqlfun -e "ALTER USER root IDENTIFIED WITH mysql_native_password BY 'mysqlfun';"
+exit
 ```
 Um diese Änderung zu aktivieren muss der laufende Datenbank-Container einmal gestoppt und dann wieder gestartet werden.
 (Anmerkung: in den untenstehenden Zeilen ist alles, was hinter dem # steht ein reiner Kommentar. Dieses muss nicht mit angegeben werden.)
