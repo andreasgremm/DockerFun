@@ -18,7 +18,7 @@ Sollte die Installation auf der zur Verfügung stehenden Maschine so nicht mögl
 
 ### Herunterladen der benötigten Docker Images
 In den oben angegebenen Beschreibungen für unsere drei Docker-Images sind jeweils die notwendigen Befehle angegeben, um diese Images aus dem Docker-Repository in unsere lokale Docker-Umgebung herunterzuladen. Also führen wir die drei, zur Zeit der Erstellung dieses Dokumentes gültigen, folgenden Befehle aus:
-(Anmerkung: das $-Zeichen steht nur als Synonym für die Eingabeaufforderung an erster Stelle. Dieses wird **NICHT** mit eingegeben!)
+(Anmerkung: das Dollar-Zeichen steht nur als Synonym für die Eingabeaufforderung an erster Stelle. Dieses wird **NICHT** mit eingegeben!)
 
 ```
 $ docker pull mysql
@@ -63,9 +63,9 @@ Erklärungen der Parameter:
 |:---------|:---------|:----|
 |--name    |gibt dem Container einen von uns gewählten Namen|my-mysql|
 |-e|setzt eine Umgebungsvariable|Variable: MYSQL\_ROOT\_PASSWORD, Wert: mysqlfun|
-|-d| startet den Container im Hintergrund||
+|-d| startet den Container im Hintergrund| |
 |--mount|verbindet den Container mit dem Volume|Volume: mysqldb, Verzeichnis: /var/lib/mysql|
-|mysql:latest|Name des zu startenden Docker-Image||
+|mysql:latest|Name des zu startenden Docker-Image| |
 
 Mit den Befehlen:
 
@@ -124,9 +124,9 @@ Erklärungen der Parameter:
 |:---------|:---------|:----|
 |--name    |gibt dem Container einen von uns gewählten Namen|myadmin|
 |--link|verbindet diesen Container mit dem Datenbank-Container|my-mysql:db|
-|-d| startet den Container im Hintergrund||
+|-d| startet den Container im Hintergrund| |
 |-p|verbindet den internen Port x mit dem Host-Port y|interner Port: 80, externer Port: 8081|
-|phpmyadmin/phpmyadmin|Name des zu startenden Docker-Image||
+|phpmyadmin/phpmyadmin|Name des zu startenden Docker-Image| |
 
 #### Erstellen einer persönlichen Datenbank
 Um eine persönliche Datenbank zu erstellen, rufen wir [PhpMyAdmin] (http://localhost:8081) auf.
@@ -134,11 +134,11 @@ Wir loggen uns mit dem Benutzer **root** und dem gewählten Passwort **mysqlfun*
 
 Im PhpMyAdmin legen wir dann einen neuen Benutzer an, vergeben ein Passwort, erstellen eine Datenbank mit dem gleichen Namen und geben dem Benutzer auf diese Datenbank alle Rechte (aber **keine** globalen Rechte!).
 
-![Benutzerkonto hinzufügen] (phpmyadmin_benutzer.png)
+![Benutzerkonto hinzufügen](phpmyadmin_benutzer.png)
 
 Anschliessend erzeugen wir in der frisch erstellten Datenbank eine neue Tabelle mit den von uns gewünschten Spalten.
 
-![Datenbankspalten hinzufügen] (phpmyadmin_spalten.png)
+![Datenbankspalten hinzufügen](phpmyadmin_spalten.png)
 
 Dieses ist mit wenigen Aktionen in der Oberfläche von PhpMyAdmin erledigt. 
 
@@ -162,15 +162,15 @@ Wir rufen den [Live API Creator] (http://localhost:8080/APICreator/#/) auf und l
 
 Wir erzeugen ein neues API ..
 
-![Neues API hinzufügen] (Create_new_API.png)
+![Neues API hinzufügen](Create_new_API.png)
 
 aus einer Datenbank ..
 
-![Database first] (Databse_First.png)
+![Database first](Databse_First.png)
 
 dann wählen wir den Datenbanktyp ..
 
-![Database Type] (Select_DB_Type.png)
+![Database Type](Select_DB_Type.png)
 
  und geben die notwendigen Verbindungsparameter ein:
 * Host: my-mysql
@@ -178,13 +178,14 @@ dann wählen wir den Datenbanktyp ..
 * Username: wie in PhpMyAdmin angegeben
 * Passwort: wie in PhpMyAdmin angegeben 
 
-![API Verbindung] (API_Connection.png)
+![API Verbindung](API_Connection.png)
 
 Mit **Test Connection** können die Verbindungsdaten verifiziert werden und anschliessen wird das API mit **Continue** erstellt.
 
 Über den Menupunkt **REST Lab** oder mittels Kommandos wie **curl** bzw. **wget** oder anderen Mitteln kann dann das API genutzt werden.
 
-![REST Lab] (Layer7APICreator/Rest_Lab.png)
+![REST Lab]
+(Rest_Lab.png)
 
 
 
