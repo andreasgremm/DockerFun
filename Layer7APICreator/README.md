@@ -162,13 +162,13 @@ Wir rufen den [Live API Creator] (http://localhost:8080/APICreator/#/) auf und l
 
 Wir erzeugen ein neues API ..
 
-![Neues API hinzufügen](Create_new_API.png)
+![Neues API hinzufügen](Create_New_API.png)
 
-aus einer Datenbank ..
+aus einer Datenbank (Database First)..
 
 ![Database first](Databse_First.png)
 
-dann wählen wir den Datenbanktyp ..
+dann wählen wir den Datenbanktyp (MySQL) ..
 
 ![Database Type](Select_DB_Type.png)
 
@@ -184,8 +184,7 @@ Mit **Test Connection** können die Verbindungsdaten verifiziert werden und ansc
 
 Über den Menupunkt **REST Lab** oder mittels Kommandos wie **curl** bzw. **wget** oder anderen Mitteln kann dann das API genutzt werden.
 
-![REST Lab]
-(Rest_Lab.png)
+![REST Lab](Rest_Lab.png)
 
 
 
