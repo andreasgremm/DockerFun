@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  # Database
+  db:
+#    image: mysql:latest
+    build:
+      context: .
+    image: mysql:neu
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqlfun
+      MYSQL_DATABASE: andreas
+      MYSQL_USER: andreas
+      MYSQL_PASSWORD: mysqlfun
+    networks:
+      - liveapi
+  # phpmyadmin
+  phpmyadmin:
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8081:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: mysqlfun
+    networks:
+      - liveapi
+  # Layer7 Live Api Creator
+  liveapicreator:
+    depends_on:
+      - db
+    image: andreasgremm/liveapicreator
+    ports:
+      - '8080:8080'
+    restart: always
+    networks:
+      - liveapi
+networks:
+  liveapi:
+volumes:
+  db_data:
+    external:
+      name: mysqldb
