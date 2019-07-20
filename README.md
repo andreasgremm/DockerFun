@@ -8,7 +8,7 @@ Have some documentation about docker and services
 
 ## Use Case 2: WordPress - Service
 
-[Beschreibung des Use-Case 2](Wordpress)
+[Beschreibung des Use-Case 2](WordPress)
 
 ## Use Case 3: Layer7 Live Api Creator - Service
 [Layer7 Live API Creator](https://www.ca.com/de/products/ca-live-api-creator.html) ist eine Lösung von CA Technolgies a Broadcom Company zur "On the Fly" Erzeugung von HTTP/RestFul Schnittstellen auf Basis von Datenquellen. Beispielsweise SQL/NoSQL Datenbanken, CSV Dateien u.v.m..
