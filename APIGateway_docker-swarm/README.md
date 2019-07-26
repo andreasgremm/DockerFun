@@ -222,5 +222,7 @@ Der Container wurde erzeugt, indem im laufenden *ubuntu:latest* z.B.: die Netzwe
 
 Nach der Auswahl eines spezifischen Service lassen sich verschiedene Parameter dynamisch verändern, so lassen sich ![Portmappings](Add_Port.png) oder Umgebungsvariablen ändern.
 
+Hier bietet es sich an die Portmappings für PHPMyAdmin (8083:80) und LiveAPICreator (8082:8080) zu setzen, um mit den Oberflächen zu arbeiten.
+
 ### Stoppen, Starten des Service
 Um den Service zeitweise zu stoppen und zu einem anderen Zeitpunkt wiederzuverwenden können die Menupunkte im Portainer genutzt werden. 
