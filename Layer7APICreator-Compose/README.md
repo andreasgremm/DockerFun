@@ -100,7 +100,7 @@ services:
   liveapicreator:
     depends_on:
       - db
-    image: andreasgremm/liveapicreator
+    image: caliveapicreator/5.2.00
     ports:
       - '8080:8080'
     restart: always

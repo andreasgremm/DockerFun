@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  # ubuntu
+  ubuntu1:
+    image: ubuntu:neu
+    command: tail -f /var/log/lastlog
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: mysqlfun
+    networks:
+      backend:
+        aliases:
+          - linux1 
+networks:
+  backend:
+    external:
+      name: backend_internal
