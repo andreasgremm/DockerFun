@@ -27,3 +27,7 @@ In diesem Use Case wird die Anwendung des Use-Case 3 wieder aufgenommen und in K
 
 
 [Beschreibung des Use-Case 4](APIGateway_docker-swarm)
+
+## Weitere Betrachtungen zu Docker und seinen Funktionalitäten
+
+In diesem [Abschnitt](Diverses) sollen sollen lose Themen zu Docker-Funktionlitäten gesammelt werden. Er dient als Dokumentation und zum nachschlagen.
