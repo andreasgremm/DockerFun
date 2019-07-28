@@ -72,7 +72,7 @@ docker container create --name temp --mount source=tempvolume,destination=/Daten
 ### Alternative 2: Nutzung eines bestehenden Image
 
 ```
-docker container create --name temp --mount source=non-git-local-includes,destination=/non-git-local-includes busybox
+docker container create --name temp --mount source=tempvolume,destination=/Daten busybox
 ```
 
 ## Kopieren von Daten 
