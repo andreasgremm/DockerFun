@@ -52,7 +52,7 @@ Im Reiter Connection geben wir die MQTT Verbindungsparameter ![MQTT Verbindungsp
 Im Reiter Listeners geben wir die MQTT Listenerparameter ![MQTT Listenerparameter](MQTT_Listener_Parameters.png) und den Listener Code ![Listener Code](MQTT_Listener_Code.png)  
 (Textbeispiel [hier](Listener_Code_Example.txt)) ein.
 
-Im obigen Beispiel sind die Variablen *resourceURL* und *settings* an die konkreten Gegebenheiten anzupassen. Falls die Tabellenstruktur ine andere als im Beispiel angegeben ist, müssen auch 
+Im obigen Beispiel sind die Variablen *resourceURL* und *settings* an die konkreten Gegebenheiten anzupassen. Falls die Tabellenstruktur ine andere als im Beispiel angegeben ist, müssen auch die Komponenten der Variable messageAudit den Spaltennamen der Tabelle angepasst werden.
 
 Am Schluss vervollständigen wir noch die MQTT Listenerdetails ![MQTT Listenerdetails](MQTT_Listener_Details.png)
 
