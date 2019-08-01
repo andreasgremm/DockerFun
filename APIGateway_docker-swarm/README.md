@@ -90,7 +90,6 @@ Da unsere Docker-Installation jetzt im *Swarm Mode* läuft, unterscheiden sich e
 version: '3'
 services:
   api-gateway:
-    restart: always
     depends_on:
       - mysql-server
     image: caapim/gateway:9.4.00
@@ -123,7 +122,6 @@ services:
 
   mysql-server:
     image: mysql:5.7
-    restart: always
     ports:
       - "3306:3306"
     deploy:
@@ -174,6 +172,9 @@ services:
     depends_on:
       - db
     image: caliveapicreator/5.2.00
+    volumes:
+      - /Users/grean11/Docker_Runtime/LiveAPICreator/CALiveAPICreator.repository:/home/tomcat/CALiveAPICreator.repository
+      - /Users/grean11/Docker_Runtime/LiveAPICreator/databases:/usr/local/CALiveAPICreator/databases
     restart: always
     networks:
       - backend

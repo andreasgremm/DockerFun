@@ -104,6 +104,9 @@ services:
     ports:
       - '8080:8080'
     restart: always
+    volumes:
+      - /Users/grean11/Docker_Runtime/LiveAPICreator/CALiveAPICreator.repository:/home/tomcat/CALiveAPICreator.repository
+      - /Users/grean11/Docker_Runtime/LiveAPICreator/databases:/usr/local/CALiveAPICreator/databases
     networks:
       - liveapi
 networks:
