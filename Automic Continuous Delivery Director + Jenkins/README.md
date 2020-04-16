@@ -56,4 +56,4 @@ Der [Start einer Phase mittels git-hub-integration-controller](https://techdocs.
 
 Der bei mir in GitHub eingestellte Webhook sieht folgendermaßen aus: 
 
-**https://cddirector.io/cdd/design/\<my CDD tenant>/v1/applications/HueController/application-versions/V1.0?username=\<my cdd email\>&branchName=\<my branch, default=master\>**
+**https://cddirector.io/cdd/design/\<my CDD tenant\>/v1/applications/HueController/application-versions/V1.0?username=\<my cdd email\>&branchName=\<my branch, default=master\>**
