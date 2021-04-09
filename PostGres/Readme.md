@@ -85,7 +85,6 @@ ALTER TABLE public."Adresse"
 ```
 
 
-
 # CA Live Api Creator
 
 ```
@@ -96,12 +95,6 @@ docker run -p 8080:8080 -d --link=test-postgres:db --name liveapicreator calivea
 Eine genauere Anleitung liegt unter [Layer7APICreator](https://github.com/andreasgremm/DockerFun/tree/master/Layer7APICreator). 
 
 Dort wird die Nutzung einer MySQL Datenbank beschrieben. Bei Postgres muss noch das Schema angegeben werden, dieses ist ohne weitere Veränderungen bei der Anlage der Datenbank/Tabellen "public".
-
-Nachfolgend die Ansicht des "RestLab" mit Darstellung der Strukturen im "Request-Body". Im Beispiel wird auch ein von syntaktischer Fehler angezeigt.
-
-![Rest-Lab Darstellung](C:\Users\Gremma\Documents\DockerFun\PostGres\Post_New_Entry.png)
-
-
 
 # Das Gesamtkonstrukt in Docker
 
@@ -115,21 +108,17 @@ c31294d372e0   caliveapicreator/5.4.00   "catalina.sh run"        2 hours ago   
 de8006de3664   postgres                  "docker-entrypoint.s…"   4 hours ago   Up 4 hours   5432/tcp                      test-postgres
 ```
 
-
-
 # Aufruf des API
 
 Ausserhalb des Live API Creators lässt das API natürlich auch aufrufen. Im Menu "RestLab" werden über den Button **How to call this API** eine Liste exemplarisch dargestellt. Über **copy + paste** können diese Kommandos dann direkt genutzt werden.
-
-
 
 ```
 andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm29bBvR:1" "http://localhost:8080/rest/default/fwuuu/v1/main:Adresse"
 [
   {
     "ID": 1,
-    "Vorname": "Wilfried",
-    "Nachname": "Cleres",
+    "Vorname": "Max",
+    "Nachname": "Mustermann",
     "Strasse": "Demoweg 2",
     "Ort": "4711 Demostadt",
     "@metadata": {
@@ -141,8 +130,8 @@ andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm2
   },
   {
     "ID": 2,
-    "Vorname": "Andreas",
-    "Nachname": "Gremm",
+    "Vorname": "Martina",
+    "Nachname": "Musterfrau",
     "Strasse": "Demoweg 1",
     "Ort": "4711 Demostadt",
     "@metadata": {
@@ -155,8 +144,5 @@ andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm2
 ]
 andreas@G02DEXN02069:~$
 ```
-
-
-
 
 
