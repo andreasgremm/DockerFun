@@ -5,7 +5,7 @@ Auf dem [Docker Hub](https://hub.docker.com/_/postgres) liegt die Beschreibung u
 docker pull postgres
 ```
 
-Für die Datenbank wird ein Docker-Volume erzeugt:
+FÃ¼r die Datenbank wird ein Docker-Volume erzeugt:
 
 ```
 docker volume create postgresdb
@@ -23,7 +23,7 @@ docker run --name test-postgres -e POSTGRES_PASSWORD=mysecretpassword -d \
 
 # Pgadmin4
 
-[Pgadmin4](https://pgadmin.org) ist ähnlich wie phpMyAdmin eine Managementoberfläche.
+[Pgadmin4](https://pgadmin.org) ist Ã¤hnlich wie phpMyAdmin eine ManagementoberflÃ¤che.
 
 ```
 docker pull dpage/pgadmin4	
@@ -40,7 +40,9 @@ docker run -p 80:80 \
    dpage/pgadmin4
 ```
 
-Der Benutzername für pgAdmin4 ist die Email-Adresse!
+Die OberflÃ¤che wird per Web-Browser: **http://localhost/** aufgerufen, der Benutzername fÃ¼r pgAdmin4 ist die Email-Adresse!
+
+## Server anlegen
 
 Nach dem Login kann ein neuer Server angelegt werden.
 
@@ -48,7 +50,9 @@ Nach dem Login kann ein neuer Server angelegt werden.
 * User: postgres
 * Password: mysecretpassword
 
-Anschliessend können Datenbanken + Tabellen entsprechend angelegt werden.  Anbei einfache Beispiele:
+## Datenbank und Tabellen anlegen
+
+Anschliessend kÃ¶nnen Datenbanken + Tabellen entsprechend angelegt werden.  Anbei einfache Beispiele:
 
 ```
 -- Database: andreas
@@ -82,7 +86,41 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."Adresse"
     OWNER to postgres;
+
+-- Table: public.Customer
+
+-- DROP TABLE public."Customer";
+
+CREATE TABLE public."Customer"
+(
+    "ID" integer NOT NULL DEFAULT nextval('"Customer_ID_seq"'::regclass),
+    "Contact" integer NOT NULL,
+    "Product" character varying COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT "Customer_pkey" PRIMARY KEY ("ID"),
+    CONSTRAINT "Contacts_fkey" FOREIGN KEY ("Contact")
+        REFERENCES public."Adresse" ("ID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."Customer"
+    OWNER to postgres;
 ```
+
+## DatensÃ¤tze eintragen
+
+Testweise werden Daten eingetragen:
+
+Tabelle Customer:
+
+![Customer](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-0.png)
+
+Tabelle Adressen:
+
+![Adressen](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-1.png)
+
 
 
 # CA Live Api Creator
@@ -92,28 +130,86 @@ docker pull caliveapicreator/5.4.00
 docker run -p 8080:8080 -d --link=test-postgres:db --name liveapicreator caliveapicreator/5.4.00
 ```
 
+Die OberflÃ¤che wird per Web-Browser: **http://localhost:8080/** aufgerufen, der Benutzername ist **admin**, das initiale Passwort ist **Password1**.
+
 Eine genauere Anleitung liegt unter [Layer7APICreator](https://github.com/andreasgremm/DockerFun/tree/master/Layer7APICreator). 
 
-Dort wird die Nutzung einer MySQL Datenbank beschrieben. Bei Postgres muss noch das Schema angegeben werden, dieses ist ohne weitere Veränderungen bei der Anlage der Datenbank/Tabellen "public".
+Dort wird die Nutzung einer MySQL Datenbank beschrieben. Bei Postgres muss noch das Schema angegeben werden, dieses ist ohne weitere VerÃ¤nderungen bei der Anlage der Datenbank/Tabellen "public". 
+
+Nach der Erzeugung des API kÃ¶nnen noch weitere Datenquellen zu diesem API hinzugefÃ¼gt oder die aktuelle Datenquelle modifiziert werden. 
+
+![DataSource](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-Source.png)
+
+
+
+
+
+Im **Data Explorer** kÃ¶nnen die Daten in der Datenbank per Eingabemaske bearbeitet werden. Im **RestLab** kann direkt mit dem API getestet werden. Unten dargestellt ist jeweils ein **Get-Request** auf die Tabelle Customer bzw. Adressen.
+
+![RestLab Customer](C:\Users\Gremma\Documents\DockerFun\PostGres\RestLab-0.png)
+
+
+
+![Restlab Adressen](C:\Users\Gremma\Documents\DockerFun\PostGres\RestLab-1.png)
+
+
 
 # Das Gesamtkonstrukt in Docker
 
-Für ein funktionsfähiges Konstrukt sollten alle drei Container in Docker laufen.
+FÃ¼r ein funktionsfÃ¤higes Konstrukt sollten alle drei Container in Docker laufen.
 
 ```
 andreas@G02DEXN02069:~$ docker ps
 CONTAINER ID   IMAGE                     COMMAND                  CREATED       STATUS       PORTS                         NAMES
 c31294d372e0   caliveapicreator/5.4.00   "catalina.sh run"        2 hours ago   Up 2 hours   0.0.0.0:8080->8080/tcp        liveapicreator
 7be1b6fec163   dpage/pgadmin4            "/entrypoint.sh"         3 hours ago   Up 3 hours   0.0.0.0:80->80/tcp, 443/tcp   focused_jang
-de8006de3664   postgres                  "docker-entrypoint.s…"   4 hours ago   Up 4 hours   5432/tcp                      test-postgres
+de8006de3664   postgres                  "docker-entrypoint.sâ€¦"   4 hours ago   Up 4 hours   5432/tcp                      test-postgres
 ```
 
 # Aufruf des API
 
-Ausserhalb des Live API Creators lässt das API natürlich auch aufrufen. Im Menu "RestLab" werden über den Button **How to call this API** eine Liste exemplarisch dargestellt. Über **copy + paste** können diese Kommandos dann direkt genutzt werden.
+Ausserhalb des Live API Creators lÃ¤sst das API natÃ¼rlich auch aufrufen. Im Menu "RestLab" werden Ã¼ber den Button **How to call this API** eine Liste exemplarisch dargestellt. Ãœber **copy + paste** kÃ¶nnen diese Kommandos dann direkt genutzt werden.
 
 ```
-andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm29bBvR:1" "http://localhost:8080/rest/default/fwuuu/v1/main:Adresse"
+$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm29bBvR:1" "http://localhost:8080/rest/default/pgdemo/v1/main:Customer"
+[
+  {
+    "ID": 1,
+    "Contact": 1,
+    "Product": "Automic",
+    "@metadata": {
+      "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Customer/1",
+      "checksum": "A:6becc4bb62b243df",
+      "links": [
+        {
+          "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Adresse/1",
+          "rel": "parent",
+          "role": "Adresse",
+          "type": "urn:caliveapicreator:main:Adresse"
+        }
+      ]
+    }
+  },
+  {
+    "ID": 2,
+    "Contact": 2,
+    "Product": "AIOPS",
+    "@metadata": {
+      "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Customer/2",
+      "checksum": "A:fe3d9927411c6a65",
+      "links": [
+        {
+          "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Adresse/2",
+          "rel": "parent",
+          "role": "Adresse",
+          "type": "urn:caliveapicreator:main:Adresse"
+        }
+      ]
+    }
+  }
+]
+
+$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm29bBvR:1" "http://localhost:8080/rest/default/pgdemo/v1/main:Adresse"
 [
   {
     "ID": 1,
@@ -122,9 +218,15 @@ andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm2
     "Strasse": "Demoweg 2",
     "Ort": "4711 Demostadt",
     "@metadata": {
-      "href": "http://localhost:8080/rest/default/fwuuu/v1/main:Adresse/1",
-      "checksum": "A:cae2e260b952291e",
+      "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Adresse/1",
+      "checksum": "A:244503cb4a52d046",
       "links": [
+        {
+          "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Customer?sysfilter=equal('Contact':1)",
+          "rel": "children",
+          "role": "Customer_List",
+          "type": "urn:caliveapicreator:main:Customer"
+        }
       ]
     }
   },
@@ -135,14 +237,18 @@ andreas@G02DEXN02069:~$ curl -H "Authorization: CALiveAPICreator VpX1taRyeZUPBm2
     "Strasse": "Demoweg 1",
     "Ort": "4711 Demostadt",
     "@metadata": {
-      "href": "http://localhost:8080/rest/default/fwuuu/v1/main:Adresse/2",
-      "checksum": "A:122c7c237edd9c09",
+      "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Adresse/2",
+      "checksum": "A:c2a47b1cacf8c6ba",
       "links": [
+        {
+          "href": "http://localhost:8080/rest/default/pgdemo/v1/main:Customer?sysfilter=equal('Contact':2)",
+          "rel": "children",
+          "role": "Customer_List",
+          "type": "urn:caliveapicreator:main:Customer"
+        }
       ]
     }
   }
-]
-andreas@G02DEXN02069:~$
 ```
 
 
