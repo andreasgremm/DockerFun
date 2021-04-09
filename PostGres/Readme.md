@@ -115,11 +115,11 @@ Testweise werden Daten eingetragen:
 
 Tabelle Customer:
 
-![Customer](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-0.png)
+![Customer](Data-0.png)
 
 Tabelle Adressen:
 
-![Adressen](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-1.png)
+![Adressen](Data-1.png)
 
 
 
@@ -138,7 +138,7 @@ Dort wird die Nutzung einer MySQL Datenbank beschrieben. Bei Postgres muss noch 
 
 Nach der Erzeugung des API können noch weitere Datenquellen zu diesem API hinzugefügt oder die aktuelle Datenquelle modifiziert werden. 
 
-![DataSource](C:\Users\Gremma\Documents\DockerFun\PostGres\Data-Source.png)
+![DataSource](Data-Source.png)
 
 
 
@@ -146,11 +146,11 @@ Nach der Erzeugung des API können noch weitere Datenquellen zu diesem API hinzu
 
 Im **Data Explorer** können die Daten in der Datenbank per Eingabemaske bearbeitet werden. Im **RestLab** kann direkt mit dem API getestet werden. Unten dargestellt ist jeweils ein **Get-Request** auf die Tabelle Customer bzw. Adressen.
 
-![RestLab Customer](C:\Users\Gremma\Documents\DockerFun\PostGres\RestLab-0.png)
+![RestLab Customer](RestLab-0.png)
 
 
 
-![Restlab Adressen](C:\Users\Gremma\Documents\DockerFun\PostGres\RestLab-1.png)
+![Restlab Adressen](RestLab-1.png)
 
 
 
